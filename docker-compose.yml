@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+    postgresql:
+        image: "postgres:13.2"
+        environment:
+            - POSTGRES_DB=filmslibrary
+            - POSTGRES_USER=postgresadmin
+            - POSTGRES_PASSWORD=filmlib
+    springboot:
+        image: springboot:0.0.1-SNAPSHOT
+        depends_on:
+            - postgresql

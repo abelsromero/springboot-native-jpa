@@ -1,0 +1,7 @@
+[
+    {
+        "name": "org.hibernate.dialect.PostgreSQL95Dialect",
+        "allPublicMethods": true,
+        "allPublicConstructors": true
+    }
+]

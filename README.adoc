@@ -1,0 +1,53 @@
+= Spring Boot Native + JPA
+
+Example of failing Spring Boot native app + JPA wtih PostgreSQL + Rest.
+
+== Project structure
+
+Project was created using Spring Initializr, later adding ProstgreSQL dependency and Java code.
+
+Project contains:
+
+* JpaRepository `FilmRepository` and `Film` entity.
+* Rest endpoint `FilmController.
+
+Users version *Spring Boot Native 0.9.0*.
+
+== Running in Java
+
+. Start PostgreSQL database with
+
+ $ docker run --name film_postgres -e POSTGRES_DB=filmslibrary -e POSTGRES_USER=postgresadmin -e POSTGRES_PASSWORD=filmlib -p 5432:5432 postgres:13.2
+
+. Build project and run normally from jar
+
+ $ ./gradlew build && java -jar build/libs/springboot-0.0.1-SNAPSHOT.jar
+
+
+== Running in Native
+
+. Build native docker image
+
+ $ ./gradlew bootBuildImage
+
+. Run with docker-compose
+
+ $ docker-compose up
+
+Run the docker image or extract binary and run locally to avoid additional Docker network configurations.
+Note the image is Linux, so the binary won't work in MacOs.
+
+== API
+
+. Create film
++
+----
+curl -X POST http://localhost:8080/films \
+-d '{"title":"my title"}'
+----
+
+. Retrieve film by id
++
+----
+curl http://localhost:8080/films/{id}
+----
